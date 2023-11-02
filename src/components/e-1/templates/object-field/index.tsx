@@ -25,7 +25,7 @@ const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
     uiSchema,
   } = props;
   const uiOptions = getUiOptions(uiSchema);
-  const { columnSpacing } = uiOptions;
+  const { columnSpacing, rowSpacing } = uiOptions;
   const TitleFieldTemplate = getTemplate(
     "TitleFieldTemplate",
     registry,
@@ -61,7 +61,11 @@ const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
           uiSchema={uiSchema}
         />
       )}
-      <Grid container columnSpacing={(columnSpacing as number | string) ?? 4}>
+      <Grid
+        container
+        columnSpacing={(columnSpacing as number | string | undefined) ?? 0}
+        rowSpacing={(rowSpacing as number | string | undefined) ?? 0}
+      >
         {properties.map((prop, index) => (
           <React.Fragment key={`${prop.name}_${index}`}>
             {prop.content}
